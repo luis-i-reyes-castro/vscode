@@ -1,0 +1,75 @@
+{
+	"folders": [
+		{ "path": "." },
+		{ "path": "../archive" },
+		{ "path": "../setup_guides" },
+		{ "path": "../sofia-utils" },
+		{ "path": "../wa-agents" },
+		{ "path": "../S3_storage" },
+		{ "path": "../da-assistant" },
+		{ "path": "../customer-loyalty" },
+		{ "path": "../aitrol" },
+		{ "path": "../ieced" },
+	],
+	"settings": {
+		// Virtual Environment
+		"python.defaultInterpreterPath": "/home/luis/pe/bin/python",
+		// Cursor Pyright
+		"cursorpyright.analysis.autoImportCompletions": true,
+		"cursorpyright.analysis.diagnosticMode": "workspace",
+		"cursorpyright.analysis.diagnosticSeverityOverrides": {
+			"reportGeneralTypeIssues": "none"
+		},
+		"cursorpyright.analysis.extraPaths": [
+			"${env:HOME}/pe/lib/python3.12/site-packages",
+			"${env:HOME}/sofia-utils",
+			"${env:HOME}/wa-agents",
+		],
+		"cursorpyright.analysis.typeCheckingMode": "off",
+		// Editor
+		"editor.autoIndent": "keep",
+		"editor.formatOnPaste": false,
+		"editor.inlayHints.enabled": "off",
+		"editor.inlineSuggest.edits.renderSideBySide": "never",
+		"editor.renderWhitespace": "all",
+		"editor.trimAutoWhitespace": false,
+		"editor.wordWrapColumn": 92,
+		"editor.wordWrap": "wordWrapColumn", // Wraps at the above column
+		"editor.wrappingIndent": "same",     // Keeps indentation when wrapping
+		"explorer.autoReveal": false,
+		"explorer.autoRevealExclude": {
+			"**/node_modules": true,
+			"**/.git": true
+		},
+		"explorer.sortOrder": "type",
+		// Files
+		"files.trimFinalNewlines": true,
+		"files.trimTrailingWhitespace": false,
+		// Workbench
+		"workbench.editor.enablePreview": false,
+		"workbench.editor.enablePreviewFromQuickOpen": false,
+		"workbench.editor.openPositioning": "last",
+		"workbench.editor.openSideBySideDirection": "down",
+		"workbench.editorAssociations": {
+			"*.svg": "default"
+		},
+		"workbench.sideBar.location": "right",
+		// ChatGPT Codex
+		"chatgpt.commentCodeLensEnabled": false,
+		// Markdown
+		"markdown.preview.scrollEditorWithPreview": false,
+		"markdown.preview.scrollPreviewWithEditor": false,
+		// Markdown file indentation
+		"[markdown]": {
+			"editor.tabSize": 2,
+			"editor.insertSpaces": true,
+			"editor.detectIndentation": false
+		},
+		// SQL file indentation
+		"[sql]": {
+			"editor.tabSize": 2,
+			"editor.insertSpaces": true,
+			"editor.detectIndentation": false
+		},
+	}
+}
