@@ -1,6 +1,4 @@
-# Cursor Project Rules
-
-* Read the code style guidelines: 
+# README
 
 ## Code Style Guidelines
 
@@ -42,3 +40,8 @@
 * Do not invent missing files, APIs, database tables, or workflows.
 * If something is unclear, inspect the repo or ask instead of guessing.
 * Prefer "not found in repo" over fabricating structure.
+
+## Commonly Used Custom Packages
+
+* `~/sofia-utils/`: Utility functions (mostly wrappers for I/O ops).
+* `~/wa-agents/`: Package for implementing WhatsApp chatbots with or without (OpenRouter) LLMs models.
