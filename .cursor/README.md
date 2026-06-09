@@ -15,9 +15,10 @@
 * I will sometimes ask you to read or review staged code.
   * When editing/fixing the code, leave your changes unstaged so that I can stage them manually while checking your work.
   * If there is no staged code it probably means I forgot to stage my changes, so look in the working area.
-* **IMPORTANT:** Trailing whitespace rules:
-  * If line is non-empty: Trim
-  * If line is empty: LEAVE UNTOUCHED, i.e., DO NOT TRIM.
+* **IMPORTANT:**
+  * IGNORE ALL trailing whitespace warnings.
+  * DO NOT trim whitespace from blank lines.
+  * Only allowed to trim whitespace from non-blank lines.
 
 ## Working Style
 
