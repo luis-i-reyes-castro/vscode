@@ -9,7 +9,6 @@
 		{ "path": "../S3_storage" },
 		{ "path": "../da-assistant" },
 		{ "path": "../customer-loyalty" },
-		{ "path": "../aitrol" },
 		{ "path": "../ieced" },
 	],
 	"settings": {
@@ -19,7 +18,7 @@
 		"cursorpyright.analysis.autoImportCompletions": true,
 		"cursorpyright.analysis.diagnosticMode": "workspace",
 		"cursorpyright.analysis.diagnosticSeverityOverrides": {
-			"reportGeneralTypeIssues": "none"
+			"reportGeneralTypeIssues": "none",
 		},
 		"cursorpyright.analysis.extraPaths": [
 			"${env:HOME}/pe/lib/python3.12/site-packages",
@@ -40,10 +39,13 @@
 		"explorer.autoReveal": false,
 		"explorer.autoRevealExclude": {
 			"**/node_modules": true,
-			"**/.git": true
+			"**/.git": true,
 		},
 		"explorer.sortOrder": "type",
 		// Files
+		"files.associations": {
+			"*.sql": "postgres"
+		},
 		"files.trimFinalNewlines": true,
 		"files.trimTrailingWhitespace": false,
 		// Workbench
@@ -52,7 +54,7 @@
 		"workbench.editor.openPositioning": "last",
 		"workbench.editor.openSideBySideDirection": "down",
 		"workbench.editorAssociations": {
-			"*.svg": "default"
+			"*.svg": "default",
 		},
 		"workbench.sideBar.location": "right",
 		// ChatGPT Codex
@@ -64,13 +66,31 @@
 		"[markdown]": {
 			"editor.tabSize": 2,
 			"editor.insertSpaces": true,
-			"editor.detectIndentation": false
+			"editor.detectIndentation": false,
 		},
 		// SQL file indentation
 		"[sql]": {
 			"editor.tabSize": 2,
 			"editor.insertSpaces": true,
-			"editor.detectIndentation": false
+			"editor.detectIndentation": false,
 		},
-	}
+		"plpgsqlLanguageServer.definitionFiles": [
+			"**/*.sql",
+			"**/*.psql",
+			"**/*.pgsql"
+		],
+		"plpgsqlLanguageServer.host": "",
+		"plpgsqlLanguageServer.port": 5432,
+		"plpgsqlLanguageServer.database": "",
+		"plpgsqlLanguageServer.user": "",
+  		"plpgsqlLanguageServer.password": "",
+		"plpgsqlLanguageServer.queryParameterPattern": "%\\([A-Za-z_][A-Za-z0-9_]*\\)s",
+		"plpgsqlLanguageServer.keywordQueryParameterPattern": [
+			"%\\({keyword}\\)s",
+		],
+		"plpgsqlLanguageServer.enableExecuteFileQueryCommand": false,
+		"plpgsqlLanguageServer.workspaceValidationTargetFiles": [
+			"${env:HOME}/customer-loyalty/backend/sql/abc_DDL/*.sql"
+		],
+	},
 }
