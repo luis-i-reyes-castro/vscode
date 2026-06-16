@@ -8,6 +8,7 @@ UNTRACKED_FILES=(
   "vscode/.cursor/rules.mdc"
   "da-assistant/.env"
   "customer-loyalty/.env"
+  "customer-loyalty/postgres-language-server.jsonc"
   "aitrol/.env"
   "ieced/.env"
 )
