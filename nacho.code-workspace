@@ -43,9 +43,6 @@
 		},
 		"explorer.sortOrder": "type",
 		// Files
-		"files.associations": {
-			"*.sql": "postgres"
-		},
 		"files.trimFinalNewlines": true,
 		"files.trimTrailingWhitespace": false,
 		// Workbench
@@ -74,23 +71,5 @@
 			"editor.insertSpaces": true,
 			"editor.detectIndentation": false,
 		},
-		"plpgsqlLanguageServer.definitionFiles": [
-			"**/*.sql",
-			"**/*.psql",
-			"**/*.pgsql"
-		],
-		"plpgsqlLanguageServer.host": "",
-		"plpgsqlLanguageServer.port": 5432,
-		"plpgsqlLanguageServer.database": "",
-		"plpgsqlLanguageServer.user": "",
-  		"plpgsqlLanguageServer.password": "",
-		"plpgsqlLanguageServer.queryParameterPattern": "%\\([A-Za-z_][A-Za-z0-9_]*\\)s",
-		"plpgsqlLanguageServer.keywordQueryParameterPattern": [
-			"%\\({keyword}\\)s",
-		],
-		"plpgsqlLanguageServer.enableExecuteFileQueryCommand": false,
-		"plpgsqlLanguageServer.workspaceValidationTargetFiles": [
-			"${env:HOME}/customer-loyalty/backend/sql/abc_DDL/*.sql"
-		],
 	},
 }
