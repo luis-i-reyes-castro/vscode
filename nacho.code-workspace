@@ -13,7 +13,7 @@
 	],
 	"settings": {
 		// Virtual Environment
-		"python.defaultInterpreterPath": "/home/luis/pe/bin/python",
+		"python.defaultInterpreterPath": "${env:HOME}/pe/bin/python",
 		// Cursor Pyright
 		"cursorpyright.analysis.autoImportCompletions": true,
 		"cursorpyright.analysis.diagnosticMode": "workspace",
