@@ -9,7 +9,6 @@ UNTRACKED_FILES=(
   "da-assistant/.env"
   "customer-loyalty/.env"
   "customer-loyalty/postgres-language-server.jsonc"
-  "aitrol/.env"
   "ieced/.env"
 )
 
