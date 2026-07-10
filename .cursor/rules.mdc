@@ -11,7 +11,7 @@ alwaysApply: true
 
 * Python:
   * Used in all projects.
-  * Rules in `rules.mdc`.
+  * Rules in `python.md`.
   * Python venv is in `~/pe`
 * SQL:
   * Used in:
