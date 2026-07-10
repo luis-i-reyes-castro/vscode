@@ -43,6 +43,10 @@
 		},
 		"explorer.sortOrder": "mixed",
 		// Files
+		"files.associations": {
+			".env": "properties",
+			".env.*": "properties",
+		},
 		"files.trimFinalNewlines": true,
 		"files.trimTrailingWhitespace": false,
 		// Workbench
