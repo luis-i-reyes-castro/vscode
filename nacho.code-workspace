@@ -1,8 +1,8 @@
 {
 	"folders": [
 		{ "path": "." },
-		{ "path": "../archive" },
-		{ "path": "../business" },
+		// { "path": "../archive" },
+		// { "path": "../business" },
 		{ "path": "../setup_guides" },
 		{ "path": "../sofia-utils" },
 		{ "path": "../wa-agents" },
