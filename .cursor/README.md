@@ -1,13 +1,23 @@
 # README
 
+* All repos are located at the `$HOME` level (i.e., `~/`)
+* All specific markdown files mentioned below live in this dir.
+
 ## Code Style Guidelines
 
-* Python (for all projects):
-  * Read `~/vscode/.cursor/rules.mdc`.
+* Python:
+  * Used in all projects.
+  * Rules in `rules.mdc`.
   * Python venv is in `~/pe`
-* TypeScript (currently only for `~/customer-loyalty/`):
-  * Read `~/vscode/.cursor/typescript.md`.
-  * Skip for all other projects.
+* SQL:
+  * Used in:
+    * `~/wa-agents/` (soon)
+    * `~/customer-loyalty/`
+    * `~/ieced/`
+  * Rules in `sql.md`.
+* TypeScript:
+  * Used in `~/customer-loyalty/`; skip for all other projects.
+  * Rules in `typescript.md`.
 
 ## Git Usage
 
