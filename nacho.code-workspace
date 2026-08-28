@@ -3,13 +3,16 @@
 		{ "path": "." },
 		// { "path": "../archive" },
 		// { "path": "../business" },
+		{ "path": "../vibe-coding" },
 		{ "path": "../setup_guides" },
 		{ "path": "../sofia-utils" },
 		{ "path": "../wa-agents" },
 		{ "path": "../S3_storage" },
-		{ "path": "../da-assistant" },
-		{ "path": "../customer-loyalty" },
+		// { "path": "../da-assistant" },
+		{ "path": "../sofia-server" },
 		{ "path": "../ieced" },
+		// { "path": "../Demo_CCTA" },
+		// { "path": "../LBBAP_Targeting" },
 	],
 	"settings": {
 		// Virtual Environment
