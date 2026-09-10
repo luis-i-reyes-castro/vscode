@@ -6,9 +6,10 @@ UNTRACKED_FILES=(
   ".git-credentials"
   "vscode/nacho.code-workspace"
   "vscode/.cursor/rules.mdc"
+  "wa-agents/postgres-language-server.jsonc"
   "da-assistant/.env"
-  "customer-loyalty/.env"
-  "customer-loyalty/postgres-language-server.jsonc"
+  "sofia-server/.env"
+  "sofia-server/postgres-language-server.jsonc"
   "ieced/.env"
 )
 
@@ -27,7 +28,7 @@ else
 fi
 
 echo_sep() { 
-  echo "$(printf -- "${2:-=}%.0s" $(seq 1 "${1:-92}"))"
+  echo "$(printf -- "${2:-=}%.0s" $(seq 1 "${1:-80}"))"
 }
 
 echo_sep

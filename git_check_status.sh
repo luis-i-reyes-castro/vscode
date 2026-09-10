@@ -4,14 +4,12 @@ set -euo pipefail
 
 BASE_DIR="$HOME"
 REPOS=(
+  "setup_guides"
   "sofia-utils"
   "wa-agents"
-  "da-assistant"
-  "customer-loyalty"
-  "aitrol"
-  "ieced"
   "S3_storage"
-  "setup_guides"
+  "sofia-server"
+  "ieced"
 )
 
 cd ~
