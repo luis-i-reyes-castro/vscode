@@ -19,16 +19,16 @@
 		"python.defaultInterpreterPath": "${env:HOME}/pe/bin/python",
 		// Cursor Pyright
 		"cursorpyright.analysis.autoImportCompletions": true,
-		"cursorpyright.analysis.diagnosticMode": "workspace",
+		"cursorpyright.analysis.diagnosticMode": "openFilesOnly",
 		"cursorpyright.analysis.diagnosticSeverityOverrides": {
 			"reportGeneralTypeIssues": "none",
 		},
 		"cursorpyright.analysis.extraPaths": [
-			"${env:HOME}/pe/lib/python3.12/site-packages",
 			"${env:HOME}/sofia-utils",
 			"${env:HOME}/wa-agents",
 		],
 		"cursorpyright.analysis.typeCheckingMode": "off",
+		"cursorpyright.nodeMaxOldSpaceSize": 4096,
 		// Editor
 		"editor.autoIndent": "keep",
 		"editor.formatOnPaste": false,
