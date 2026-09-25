@@ -39,6 +39,14 @@ I generally follow [PEP 8](https://peps.python.org/pep-0008/) guidelines for wri
   * `[ item for item in items ]`
   * `{ key : value for key, value in items }`
 
+## Iterable/Dict Unpacking
+
+* Always wrap the iterable/dict being unpacked in parenthesis.
+* Example:
+  * Suppose object `some_object` has a list/tuple member `some_list`
+  * ❌ Bad: `*some_object.some_list`
+  * ✅ Good: `*(some_object.some_list)`
+
 ### Function and Method Definitions
 
 * Leave a space between the opening parenthesis and the first argument.
