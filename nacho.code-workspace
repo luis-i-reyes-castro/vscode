@@ -44,7 +44,7 @@
 			"**/node_modules": true,
 			"**/.git": true,
 		},
-		"explorer.sortOrder": "mixed",
+		"explorer.sortOrder": "default",
 		// Files
 		"files.associations": {
 			"*.env": "properties",
