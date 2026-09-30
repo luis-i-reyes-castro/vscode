@@ -162,11 +162,24 @@ from basemodels import ( ProductData,
 
 ## Docstring Style Guidelines
 
+### For Functions
+
+* Triple double quotes on their own lines.
+* NEVER put the entire docstring in single line.
 * Space and `\\` after the function/method description
 * Align the argument descriptions
 * No need to re-state argument types or return types, since the IDE already shows them. What I want instead is relevant information.
 
-Example:
+**EXAMPLES:**
+
+✅ Good for simple functions:
+```python
+def function( argument1 : type_1, arg2 : type_2, ...) -> return_type :
+    """
+    Explanation of function's main goal
+    """
+```
+✅ Good for complex functions:
 ```python
 def function( argument1 : type_1, arg2 : type_2, ...) -> return_type :
     """
@@ -178,3 +191,33 @@ def function( argument1 : type_1, arg2 : type_2, ...) -> return_type :
         Relevant info about the returned object
     """
 ```
+❌ Bad:
+```python
+def function( argument1 : type_1, arg2 : type_2, ...) -> return_type :
+    """Explanation of function's main goal"""
+```
+
+### For Constants (Including Class Variables)
+
+* If it fits, write the entire docstring in a single line, with spaces separating the first and last characters from the triple double quotes.
+* If it does not fit in a single line, do the same as with functions.
+
+**EXAMPLES:**
+
+✅ Good:
+  ```python
+  SOME_CONSTANT = 42
+  """ Explanation of constant's meaning or goal """
+  ```
+✅ Good:
+  ```python
+  SOME_OTHER_CONSTANT = 0
+  """
+  Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
+  """
+  ```
+❌ Bad:
+  ```python
+  YET_ANOTHER_CONSTANT = None
+  """Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor."""
+  ```
