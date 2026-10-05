@@ -24,11 +24,6 @@ else
   exit 1
 fi
 
-echo_sep() { 
-  echo "$(printf -- "${2:-=}%.0s" $(seq 1 "${1:-80}"))"
-}
-
-echo_sep
 echo "DIFF BETWEEN UNTRACKED FILES"
 echo "Source: $SOURCE"
 echo "Target: $TARGET"
@@ -36,8 +31,6 @@ echo "Target: $TARGET"
 for file in "${UNTRACKED_FILES[@]}"; do
   local_file="$HOME/$file"
   remote_file="~/$file"
-
-  echo_sep
   echo "FILE: ~/$file"
 
   if [[ ! -f "$local_file" ]]; then
