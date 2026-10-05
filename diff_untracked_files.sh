@@ -4,10 +4,7 @@ set -euo pipefail
 
 UNTRACKED_FILES=(
   ".git-credentials"
-  "vscode/nacho.code-workspace"
-  "vscode/.cursor/rules.mdc"
   "wa-agents/postgres-language-server.jsonc"
-  "da-assistant/.env"
   "sofia-server/.env"
   "sofia-server/postgres-language-server.jsonc"
   "ieced/.env"
