@@ -147,17 +147,40 @@ def function( ...,
 ## Imports
 
 * Declare the imports in sections according to the following order:
-  1. Standard library modules imported at the module-name level, e.g., `import os`, `import re`.
-  2. Functions and/or classes imported from the standard library and/or external packages (installed via `pip` or `uv`), e.g., `from pydantic import BaseModel`, `from json import dumps`.
+  1. Standard library and popular publicly-available modules imported at the module-name level, e.g.:
+  ```python
+  import numpy as np
+  import os
+  import re
+  ```
+  2. Functions and/or classes imported from the standard library and/or any popular publicly-available packages installable via `pip` or `uv`, e.g.:
+  ```python
+  from datetime import timedelta
+  from fastapi import (
+    FastAPI,
+    status,
+  )
+  from json import (
+    dumps,
+    loads,
+  )
+  from pydantic import BaseModel
+  from typing import (
+    Any,
+    Self,
+  )
+  ```
   3. Functions and/or classes imported from `sofia_utils` or `wa_agents`.
   4. Functions and/or classes imported from local modules.
 * Within each of the previous sections, sort the declarations alphabetically.
 * Leave a blank line between sections.
 * When importing multiple functions and/or classes from a single module, use parenthesis to declare each function/class in a separate line. E.g.:
 ```python
-from basemodels import ( ProductData,
-                         TaxData,
-                         UserData )
+from .basemodels import (
+  ProductData,
+  TaxData,
+  UserData,
+)
 ```
 
 ## Docstring Style Guidelines
