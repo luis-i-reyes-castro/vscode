@@ -1,0 +1,4 @@
+interface:
+  display_name: "Recover Cursor History"
+  short_description: "Restore deleted files from Cursor snapshots"
+  default_prompt: "Use $recover-cursor-history to find and safely restore a recently deleted or overwritten file from Cursor local history."
