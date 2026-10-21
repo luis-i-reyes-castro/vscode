@@ -1,7 +1,9 @@
 # General Guidelines
 
-* Max line length: **92 characters**
-* My editor is in **portrait mode**, so vertical readability is preferred over horizontal density.
+* Max line length for code: **92 characters**
+  * Reason is I use a **portrait mode** monitor (right side) for editing code.
+* No max line length for non-code text (inline comments, docstrings, markdown).
+  * Reason is I use a **landscape mode** monitor (left side) for editing non-code text, and so in that monitor I prefer that my IDE's editor wrap the text.
 * Preserve whitespace that supports vertical readability, including indented blank lines.
 * Do not run broad trailing-whitespace cleanup commands unless I explicitly ask for that. If `git diff --check` flags whitespace, report it or fix only the exact lines being semantically edited.
 
@@ -143,6 +145,20 @@ def function( ...,
         ...
     """
 ```
+
+### Vertical Whitespace Within Functions
+
+* Treat a function body like prose divided into logical paragraphs.
+* Leave an indented blank line:
+  * after a function or method header, or after its docstring;
+  * between setup, validation, I/O, transformation, mutation, and return stages;
+  * before and after non-trivial `if`, `elif`, `else`, `for`, `while`,
+    `try`, `except`, `finally`, `with`, and `async with` blocks;
+  * before a final return when it follows other work.
+* Within nested control flow, use indented blank lines to separate logical stages at that indentation level.
+* Keep directly related statements together. Do not add a blank line between a condition and its immediate single-line action.
+* Do not collapse logical paragraphs merely because PEP 8 does not require blank lines there.
+* Preserve indentation on blank lines inside indented blocks.
 
 ## Imports
 

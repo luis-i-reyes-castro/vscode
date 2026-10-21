@@ -9,7 +9,6 @@
 		{ "path": "../wa-agents" },
 		{ "path": "../S3_storage" },
 		{ "path": "../sofia-server" },
-		{ "path": "../ieced" },
 		{ "path": "../LBBAP_Targeting" },
 	],
 	"settings": {
