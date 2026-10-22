@@ -46,7 +46,6 @@ overrides them.
   * leave whitespace-only blank lines untouched.
 
 Example:
-
 ```sql
 SELECT
   inv.id           AS id,
@@ -79,7 +78,6 @@ ORDER BY
   with the dialect's `NULLIF` or equivalent before type conversion.
 
 Example:
-
 ```sql
 -- PARAMS:
   -- id_user      : UUID | None
@@ -95,32 +93,16 @@ Example:
 * Qualify selected columns and `WHERE` columns when more than one table is
   involved.
 * Prefer explicit `JOIN ... ON ...` over implicit joins.
-* For double and triple joins, keep the table aliases and `ON` clauses aligned
-  when the join condition fits on one line:
-
-```sql
-FROM
-  orders         AS ord
-JOIN
-  customers      AS cus ON ord.customer_id = cus.id
-LEFT JOIN
-  reward_totals  AS rew ON rew.order_id    = ord.id
-LEFT JOIN
-  payment_totals AS pay ON pay.order_id    = ord.id
-```
-
 * Group boolean predicates with parentheses when combining `AND` and `OR`.
 * Keep optional filters readable:
-
-```sql
-WHERE
-  ( inv.business_id = @business_id ) AND
-  (
-    ( NULLIF( @status, '') IS NULL ) OR
-    ( inv.status = NULLIF( @status, '') )
-  )
-```
-
+  ```sql
+  WHERE
+    ( inv.business_id = @business_id ) AND
+    (
+      ( NULLIF( @status, '') IS NULL ) OR
+      ( inv.status = NULLIF( @status, '') )
+    )
+  ```
 * Prefer `RETURNING` for insert/update queries when the caller needs generated
   IDs or updated values and the dialect supports it.
 * In upsert statements, keep update assignments in a vertical `SET` block.
@@ -128,6 +110,24 @@ WHERE
   the attempted insert.
 * Use `COALESCE( @param, table.column )` only when `NULL` means "keep existing
   value"; do not use it when `NULL` is a meaningful update.
+
+### Multiple Joins
+
+For multuple joins:
+* Try to keep the table aliases and `ON` clauses aligned.
+* For `ON` clauses with equality condition:
+  * Left side: Initial `FROM` table or previously joined table.
+  * Right side: Table being joined.
+
+Example:
+```sql
+FROM
+  customers      AS cus
+LEFT JOIN
+  reward_totals  AS rew ON cus.id = rew.customer_id
+LEFT JOIN
+  payment_totals AS pay ON cus.id = pay.customer_id
+```
 
 ## DDL Style
 
