@@ -7,7 +7,6 @@ UNTRACKED_FILES=(
   "wa-agents/postgres-language-server.jsonc"
   "sofia-server/.env"
   "sofia-server/postgres-language-server.jsonc"
-  "ieced/.env"
 )
 
 # Detect source OS and target OS
