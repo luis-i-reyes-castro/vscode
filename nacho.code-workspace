@@ -1,10 +1,8 @@
 {
 	"folders": [
 		{ "path": "." },
-		// { "path": "../archive" },
-		// { "path": "../business" },
 		{ "path": "../vibe-coding" },
-		{ "path": "../setup_guides" },
+		{ "path": "../setup-guides" },
 		{ "path": "../sofia-utils" },
 		{ "path": "../wa-agents" },
 		{ "path": "../S3_storage" },
