@@ -5,8 +5,11 @@
 		{ "path": "../setup-guides" },
 		{ "path": "../sofia-utils" },
 		{ "path": "../wa-agents" },
-		{ "path": "../S3_storage" },
 		{ "path": "../sofia-server" },
+		{ "path": "../sofia-server/backend/case_handlers/da_assistant" },
+		{ "path": "../sofia-server/backend/case_handlers/ieced" },
+		{ "path": "../sofia-server/backend/case_handlers/tia_chatbots" },
+		{ "path": "../tv_model_guided" },
 		{ "path": "../LBBAP_Targeting" },
 	],
 	"settings": {
