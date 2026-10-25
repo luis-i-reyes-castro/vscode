@@ -10,7 +10,6 @@
 		{ "path": "../sofia-server/backend/case_handlers/ieced" },
 		{ "path": "../sofia-server/backend/case_handlers/tia_chatbots" },
 		{ "path": "../tv_model_guided" },
-		{ "path": "../LBBAP_Targeting" },
 	],
 	"settings": {
 		// Virtual Environment
