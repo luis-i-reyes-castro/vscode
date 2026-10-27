@@ -113,11 +113,12 @@ Example:
 
 ### Multiple Joins
 
-For multuple joins:
+For multiple joins:
 * Try to keep the table aliases and `ON` clauses aligned.
-* For `ON` clauses with equality condition:
-  * Left side: Initial `FROM` table or previously joined table.
-  * Right side: Table being joined.
+* For equality conditions in `ON` clauses:
+  * Put the column from the table with the **lower dependency level** on the **left** side of the equality.
+  * If both tables have the same dependency level, put the column from the table
+    declared first in the schema DDL on the left.
 
 Example:
 ```sql

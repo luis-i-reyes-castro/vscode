@@ -103,14 +103,18 @@ I generally follow [PEP 8](https://peps.python.org/pep-0008/) guidelines for wri
     ```
   * Do something similar when declaring dictionaries and function arguments. For arguments also align the type hints. E.g.:
     ```python
-    new_dict = { components  : …,
-                 connections : …,
-                 debug       : … }
+    new_dict = {
+      components  : …,
+      connections : …,
+      debug       : …,
+    }
     …
-    new_method( self,
-                comp       : str,
-                comp_probs : list[str] = [],
-                debug      : bool      = False ) -> list | None :
+    new_method(
+      self,
+      comp       : str,
+      comp_probs : list[str],
+      debug      : bool = False,
+    ) -> list | None :
     ```
 * Leave a blank line before the assignment block and after it so each cluster reads like its own paragraph.
 
@@ -130,10 +134,13 @@ def function(...) -> return_type | None :
 ### Functions With Dependent Return Type
 
 ```python
-def function( ...,
-              arg_k : type_k,
-              ...
-            ) -> return_type_1 | return_type_2 | ... :
+def function( 
+  arg_1   : type_1,
+  ...,
+  arg_k   : type_k,
+  arg_kp1 : type_kp1,
+  ...
+) -> return_type_1 | return_type_2 | ... :
     """
     Function or method to do some things \\
     Args:
