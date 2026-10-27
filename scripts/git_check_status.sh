@@ -7,9 +7,11 @@ REPOS=(
   "setup_guides"
   "sofia-utils"
   "wa-agents"
-  "S3_storage"
   "sofia-server"
+  "da-assistant"
   "ieced"
+  "tia-chabots"
+  "tv_model_guided"
 )
 
 cd ~

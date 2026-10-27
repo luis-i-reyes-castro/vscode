@@ -1,8 +1,7 @@
 ---
 alwaysApply: true
 ---
-
-# README
+# AGENTS.md
 
 * All repos are located at the `$HOME` level (i.e., `~/`)
 * All specific markdown files mentioned below live in this dir.
@@ -11,17 +10,14 @@ alwaysApply: true
 
 * Python:
   * Used in all projects.
-  * Rules in `python.md`.
+  * Rules in `typesetting/python.md`.
   * Python venv is in `~/pe`
 * SQL:
-  * Used in:
-    * `~/wa-agents/` (soon)
-    * `~/customer-loyalty/`
-    * `~/ieced/`
-  * Rules in `sql.md`.
+  * Used in most projects.
+  * Rules in `typesetting/sql.md`.
 * TypeScript:
-  * Used in `~/customer-loyalty/`; skip for all other projects.
-  * Rules in `typescript.md`.
+  * Only used in `~/sofia-server` for the frontend; skip for all other projects.
+  * Rules in `typesetting/typescript.md`.
 
 ## Git Usage
 
@@ -33,6 +29,11 @@ alwaysApply: true
   * IGNORE ALL trailing whitespace warnings.
   * DO NOT trim whitespace from blank lines.
   * Only allowed to trim whitespace from non-blank lines.
+
+## First-party Packages
+
+* `~/sofia-utils/`: Utility functions (mostly wrappers for I/O ops).
+* `~/wa-agents/`: Package for implementing WhatsApp chatbots with or without (OpenRouter) LLMs models.
 
 ## Working Style
 
@@ -55,8 +56,3 @@ alwaysApply: true
 * Do not invent missing files, APIs, database tables, or workflows.
 * If something is unclear, inspect the repo or ask instead of guessing.
 * Prefer "not found in repo" over fabricating structure.
-
-## Commonly Used Custom Packages
-
-* `~/sofia-utils/`: Utility functions (mostly wrappers for I/O ops).
-* `~/wa-agents/`: Package for implementing WhatsApp chatbots with or without (OpenRouter) LLMs models.
