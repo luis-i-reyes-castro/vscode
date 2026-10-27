@@ -1,4 +1,20 @@
-# General Guidelines
+# Portrait Python
+
+A Python typesetting specification for visual grouping and vertical scanning.
+
+## Principles and Scope
+
+* Group related statements into logical paragraphs.
+* Align related data when it helps readers compare it.
+* Keep code narrow enough to scan on a portrait monitor.
+* Apply this spec to handwritten Python.
+  Leave generated and third-party code in its own style.
+* Follow PEP 8 where this spec does not state an exception.
+* When rules conflict, prioritize correctness, clarity, small reviewable diffs, then typography.
+* Apply formatting to new or semantically edited code.
+  Do not reformat unrelated code merely to enforce this spec.
+
+## General Guidelines
 
 * Max line length for code: **92 characters**
   * Reason is I use a **portrait mode** monitor (right side) for editing code.
@@ -12,25 +28,99 @@
 ## Variable Naming
 
 * Variables, functions, and method names: `snake_case`
-* Class names: `CamelCase`
+* Class names:
+  * Short names:`CamelCase`
+  * Long names: For class names with 4 or more segments use underscores to separate logical segments, e.g., `WhatsApp_Local_FlowContext`.
 
 ## PEP 8 Exceptions
 
-I generally follow [PEP 8](https://peps.python.org/pep-0008/) guidelines for writing Python code. However, I prefer to **add extra spaces in specific places** for better readability, especially in the context of my vertical screen setup. These exceptions are listed below.
+I generally follow [PEP 8](https://peps.python.org/pep-0008/) guidelines for writing Python code.
+However, I prefer to **add extra spaces in specific places** for better readability, especially in the context of my vertical screen setup. These exceptions are listed below.
 
 ### Assignments
 
-* Leave a space before and after the equal sign.
-* ✅ Example: `value = 10`
+* In general:
+  * Leave at least one space before the equal sign.
+  * Leave one space after the equal sign.
+  * ✅ Example: `value = 10`
+  * ❌ Counterexample: `horrible_style=True`
+* Assignment Blocks:
+  * Align `=` or annotation/dictionary colons within small, contiguous groups describing the same thing.
+  * Align type annotations and defaults in related parameter declarations when this fits within 92 characters.
+  * Do not align unrelated statements or extend alignment across logical paragraphs.
+  * Prefer wrapping over excessive padding. When alignment causes a large unrelated diff, keep the edited group smaller or use single spaces.
+  * Separate assignment groups from other logical stages with blank lines; do not insert extra blank lines at module or block boundaries solely for alignment.
+  * ✅ Example:
+    ```python
+    check_components_flag  = True
+    check_connections_flag = False
+    check_others_flag      = True
+    …
+    new_dict = {
+        "components"  : components,
+        "connections" : connections,
+        "debug"       : debug,
+    }
+    …
+    def new_method(
+        self,
+        comp       : str,
+        comp_probs : list[str] | None = None,
+        debug      : bool             = False,
+    ) -> list[str] :
+        
+        if comp_probs is None :
+            comp_probs = []
+        
+        # Continue with the operation here.
+        return comp_probs
+    ```
 
-### Lists, Tuples, Dictionaries, and Sets (with 2+ elements)
+### Line Wrapping
 
-* Leave a space between the opening bracket/brace/parenthesis and the first item.
+* When a definition, call, or collection exceeds 92 characters, prefer one parameter, argument, or item per line.
+* Use four spaces per indentation level.
+* Align the closing delimiter with the start of the statement.
+* Use a trailing comma in multiline definitions, calls, imports, and collection displays.
+* Prefer implicit continuation inside parentheses over backslash continuation.
+* Keep indivisible URLs and strings intact when splitting them would obscure meaning or change their value.
+* In annotations:
+  * Keep simple generic types compact: `dict[ str, Any]`.
+  * Apply collection-literal spacing to values, not to type parameters.
+  * ✅ Example:
+    ```python
+    def build_report(
+        customer_id : int,
+        *,
+        include_tax : bool = True,
+    ) -> Report :
+        
+        return render_report(
+            customer_id,
+            include_tax = include_tax,
+        )
+    ```
+
+### Conditionals and Loops
+
+* In compound statements, including `if`, `for`, `while`, `try`, `except`, `with`, `match`, and `case`, do leave a space before the ending colon:
+* ✅ Examples:
+  * `if condition :`
+  * `for item in list_of_items :`
+
+### Lists, Tuples, Dictionaries, and Sets
+
+* For single-line nonempty collection literals, leave a space after the opening delimiter and before the closing delimiter.
+* Multiline literals follow the line-wrapping rules.
 * Leave a space after each comma.
 * For dictionaries, leave a space before and after each colon between key and value.
+* Keep empty literals compact: `[]`, `{}`, `()`.
+  Use `set()` for an empty set.
 * ✅ Examples:
-  * `my_list = [ item1, item2, item3 ]`
-  * `my_dict = { key1 : value1, key2 : value2 }`
+  * `one_item = [ item ]`
+  * `one_tuple = ( item, )`
+  * `single_line_list = [ item1, item2, item3 ]`
+  * `single_line_dict = { key1 : value1, key2 : value2 }`
 
 ### Comprehensions
 
@@ -43,7 +133,7 @@ I generally follow [PEP 8](https://peps.python.org/pep-0008/) guidelines for wri
 
 ## Iterable/Dict Unpacking
 
-* Always wrap the iterable/dict being unpacked in parenthesis.
+* When unpacking values in calls or displays do wrap expressions after `*` or `**` in parentheses, EXCEPT for parameter declarations such as `*args` or `**kwargs`.
 * Example:
   * Suppose object `some_object` has a list/tuple member `some_list`
   * ❌ Bad: `*some_object.some_list`
@@ -64,13 +154,13 @@ I generally follow [PEP 8](https://peps.python.org/pep-0008/) guidelines for wri
 
 ### Function and Method Calls
 
+* No argument: `function()`
 * Single argument:
   * Leave no spaces.
   * ✅ Example: `function(arg)`
   * ❌ Counterexamples:
     * `function( arg)`
     * `function( arg )`
-
 * Multiple arguments:
   * Leave a space between the opening parenthesis and the first argument.
   * Leave a space after each comma.
@@ -79,78 +169,50 @@ I generally follow [PEP 8](https://peps.python.org/pep-0008/) guidelines for wri
     * `isinstance( var, type)`
     * `class_method( arg1, arg2, arg3)`
 
-### Conditionals and Loops
-
-* Leave a space before the ending colon.
-  ✅ Examples:
-  `if condition :`
-  `for item in list_of_items :`
-
 ### Type Annotations
 
 * Prefer [PEP 604](https://peps.python.org/pep-0604/) pipe-style unions over `typing.Optional` / `typing.Union`.
   * ✅ Example: `value : list[str] | None`
   * ❌ Counterexample: `value : Optional[list[str]]`
 
-### Assignment Blocks
-
-* When writing a cluster of related assignments, align the equal signs so the values form a clean vertical column.
-  * ✅
-    ```python
-    check_components_flag  = …
-    check_connections_flag = …
-    check_others_flag      = …
-    ```
-  * Do something similar when declaring dictionaries and function arguments. For arguments also align the type hints. E.g.:
-    ```python
-    new_dict = {
-      components  : …,
-      connections : …,
-      debug       : …,
-    }
-    …
-    new_method(
-      self,
-      comp       : str,
-      comp_probs : list[str],
-      debug      : bool = False,
-    ) -> list | None :
-    ```
-* Leave a blank line before the assignment block and after it so each cluster reads like its own paragraph.
-
 ### Functions that Return Something or None
 
+Document the condition that produces `None`, rather than merely restating the union type.
+
 ```python
-def function(...) -> return_type | None :
+def find_customer( customer_id : int) -> Customer | None :
     """
-    Function or method to do some things \\
+    Find a customer by internal ID \\
     Args:
         ...
     Returns:
-        If (some condition) then (some object); else None.
+        The matching customer, or None if the ID is not in the database.
     """
 ```
 
 ### Functions With Dependent Return Type
 
+Describe which condition selects each return value.
+Use `Literal` and `@overload` when callers benefit from a more precise static return type;
+do not add overloads solely to restate documentation.
+
 ```python
-def function( 
-  arg_1   : type_1,
-  ...,
-  arg_k   : type_k,
-  arg_kp1 : type_kp1,
-  ...
-) -> return_type_1 | return_type_2 | ... :
+def read_payload(
+  payload : bytes,
+  *,
+  decode  : bool = True,
+) -> str | bytes :
     """
-    Function or method to do some things \\
+    Read a payload as text or raw bytes \\
     Args:
         ...
     Returns:
-        Result depends on the value of `arg_k`:
-        `value_1`: Result is (some type of object)
-        `value_2`: Result is (some other type of object)
-        ...
+        UTF-8 text when decode is True; otherwise the original bytes.
+    Raises:
+        UnicodeDecodeError: The requested text is not valid UTF-8.
     """
+    ...
+    return payload.decode("utf-8") if decode else payload
 ```
 
 ### Vertical Whitespace Within Functions
@@ -159,16 +221,18 @@ def function(
 * Leave an indented blank line:
   * after a function or method header, or after its docstring;
   * between setup, validation, I/O, transformation, mutation, and return stages;
-  * before and after non-trivial `if`, `elif`, `else`, `for`, `while`,
-    `try`, `except`, `finally`, `with`, and `async with` blocks;
+  * around non-trivial control-flow blocks when they form a distinct logical stage;
   * before a final return when it follows other work.
 * Within nested control flow, use indented blank lines to separate logical stages at that indentation level.
+* Keep connected branches (`if`/`elif`/`else`, `try`/`except`/`finally`) together unless a blank line marks a useful logical boundary.
+  Do not add blank lines mechanically around every nested block.
 * Keep directly related statements together. Do not add a blank line between a condition and its immediate single-line action.
 * Do not collapse logical paragraphs merely because PEP 8 does not require blank lines there.
 * Preserve indentation on blank lines inside indented blocks.
 
 ## Imports
 
+* Put `from __future__` imports first, right after the module docstring (if present).
 * Declare the imports in sections according to the following order:
   1. Standard library and popular publicly-available modules imported at the module-name level, e.g.:
   ```python
@@ -208,26 +272,37 @@ from .basemodels import (
 
 ## Docstring Style Guidelines
 
-### For Functions
+### Text
+
+Use the guidelines in [`markdown.md`](markdown.md).
+
+### Functions
 
 * Triple double quotes on their own lines.
 * NEVER put the entire docstring in single line.
-* Space and `\\` after the function/method description
-* Align the argument descriptions
-* No need to re-state argument types or return types, since the IDE already shows them. What I want instead is relevant information.
+* Space and `\\` after the function/method description.
+* Separate the summary from `Args:`, `Returns:`, or `Raises:` with a blank line.
+  No trailing backslash marker is required.
+* Align argument descriptions within each docstring.
+* Explain argument meaning, units, constraints, side effects, and failure behavior rather than repeating annotations.
+* Omit `Args:` and `Returns:` when they would only restate obvious information.
+* Document when `None` is returned and what it means.
+  For dependent return values, describe which input or condition selects each result.
+* Add `Raises:` for exceptions callers are expected to handle;
+  do not list every possible implementation exception.
 
 **EXAMPLES:**
 
 ✅ Good for simple functions:
 ```python
-def function( argument1 : type_1, arg2 : type_2, ...) -> return_type :
+def function( argument1 : type_1, arg2 : type_2) -> return_type :
     """
     Explanation of function's main goal
     """
 ```
 ✅ Good for complex functions:
 ```python
-def function( argument1 : type_1, arg2 : type_2, ...) -> return_type :
+def function( argument1 : type_1, arg2 : type_2) -> return_type :
     """
     Function or method to do some things \\
     Args:
@@ -239,11 +314,11 @@ def function( argument1 : type_1, arg2 : type_2, ...) -> return_type :
 ```
 ❌ Bad:
 ```python
-def function( argument1 : type_1, arg2 : type_2, ...) -> return_type :
-    """Explanation of function's main goal"""
+def function( argument1 : type_1, arg2 : type_2) -> return_type :
+    """Awful explanation of function's main goal"""
 ```
 
-### For Constants (Including Class Variables)
+### Constants (Including Class Variables)
 
 * If it fits, write the entire docstring in a single line, with spaces separating the first and last characters from the triple double quotes.
 * If it does not fit in a single line, do the same as with functions.
