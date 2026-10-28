@@ -29,7 +29,7 @@ Configured `backend/.dockerignore` prevents nested `.env`/`.git data`, caches, l
 ## Code Blocks
 
 * Use the corresponding typesetting rules found in this same directory.
-  * [Python](typesetting/python.md)
-  * [SQL](typesetting/sql.md)
-  * [Typescript](typesetting/typescript.md) (only for `sofia-server`'s frontend)
+  * [Python](python.md)
+  * [SQL](sql.md)
+  * [Typescript](typescript.md) (only for `sofia-server`'s frontend)
 * If the code block is preceded by text referring to the code, e.g., "Run the code below:", do not leave a space between the text and the code block.
