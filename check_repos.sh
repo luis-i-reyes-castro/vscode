@@ -33,8 +33,9 @@ for repo in "${REPOS[@]}"; do
       exit 0
     fi
     read -r ahead behind <<< "$(git rev-list --left-right --count HEAD...FETCH_HEAD)"
-    warning_sign=""
-    if (( ahead > 0 || behind > 0 )); then
+    if (( ahead > 0 || behind > 0 )) ||
+      [[ -n "$(git ls-files --others --exclude-standard)" ]] ||
+      git rev-parse --verify --quiet refs/stash >/dev/null; then
       printf '\033[93m'
       trap 'printf "\033[0m"' EXIT
     fi

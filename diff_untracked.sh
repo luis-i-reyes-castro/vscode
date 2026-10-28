@@ -27,6 +27,22 @@ echo "DIFF BETWEEN UNTRACKED FILES"
 echo "Source: $SOURCE"
 echo "Target: $TARGET"
 
+SSH_OPTIONS=(
+  -o BatchMode=yes
+  -o ConnectTimeout=3
+  -o ConnectionAttempts=1
+)
+if ! connection_error="$(ssh "${SSH_OPTIONS[@]}" "$TARGET" true 2>&1)"; then
+  printf '\033[93m'
+  trap 'printf "\033[0m"' EXIT
+  echo "Could not connect to $TARGET."
+  echo "Make sure it is powered on, reachable, and available through SSH."
+  printf '\033[0m'
+  trap - EXIT
+  echo "$connection_error"
+  exit 1
+fi
+
 for file in "${UNTRACKED_FILES[@]}"; do
   local_file="$HOME/$file"
   remote_file="~/$file"
@@ -37,7 +53,7 @@ for file in "${UNTRACKED_FILES[@]}"; do
     continue
   fi
 
-  if ! remote_contents="$(ssh "$TARGET" "cat $remote_file" 2>&1)"; then
+  if ! remote_contents="$(ssh "${SSH_OPTIONS[@]}" "$TARGET" "cat $remote_file" 2>&1)"; then
     echo "Could not read remote file: $remote_file on $TARGET"
     echo "$remote_contents"
     continue
