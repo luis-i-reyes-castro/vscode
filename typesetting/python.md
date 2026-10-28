@@ -29,8 +29,9 @@ A Python typesetting specification for visual grouping and vertical scanning.
 
 * Variables, functions, and method names: `snake_case`
 * Class names:
-  * Short names:`CamelCase`
-  * Long names: For class names with 4 or more segments use underscores to separate logical segments, e.g., `WhatsApp_Local_FlowContext`.
+  * Names with fewer than four words: use `CamelCase`, e.g., `FlowContext` or `LocalFlowContext`.
+  * Names with four or more words: use underscores between logical groups, keeping each group in `CamelCase` and preserving acronyms, e.g., `WhatsApp_OB_InteractiveOptionsHeaderObject` from `wa_agents/io_models.py`.
+    Count words before grouping, treating product names and acronyms as single units; this example contains six units (`WhatsApp`, `OB`, `Interactive`, `Options`, `Header`, `Object`) arranged into three groups.
 
 ## PEP 8 Exceptions
 
@@ -85,8 +86,10 @@ However, I prefer to **add extra spaces in specific places** for better readabil
 * Prefer implicit continuation inside parentheses over backslash continuation.
 * Keep indivisible URLs and strings intact when splitting them would obscure meaning or change their value.
 * In annotations:
-  * Keep simple generic types compact: `dict[ str, Any]`.
-  * Apply collection-literal spacing to values, not to type parameters.
+  * One type parameter: leave no spaces inside the brackets, e.g., `list[str]`.
+  * Multiple type parameters: leave a space after the opening bracket and after each comma, but none before the closing bracket, e.g., `dict[ str, Any]`.
+  * Apply these rules independently to nested generic types, e.g., `dict[ str, list[int]]`.
+  * Collection-literal spacing applies to values, not to type parameters.
   * ✅ Example:
     ```python
     def build_report(
