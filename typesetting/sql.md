@@ -84,6 +84,10 @@ Example:
 
 ## Query Style
 
+* In each `SELECT`, alias every output column or none of them.
+  If any column uses `AS`, give the others `AS` aliases too and align the `AS` keywords.
+  A bare `table.column` takes the column's own name as its alias.
+* Prefix every CTE name with `CTE_`.
 * Prefer explicit table aliases for multi-table queries.
 * Use short aliases that reflect the table name or existing convention.
 * Qualify selected columns and `WHERE` columns when more than one table is involved.
