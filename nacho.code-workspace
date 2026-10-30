@@ -49,6 +49,7 @@
 		},
 		"files.trimFinalNewlines": true,
 		"files.trimTrailingWhitespace": false,
+		"json.schemaDownload.enable": true,
 		// Workbench
 		"workbench.editor.enablePreview": false,
 		"workbench.editor.enablePreviewFromQuickOpen": false,
