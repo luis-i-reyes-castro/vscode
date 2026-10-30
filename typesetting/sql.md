@@ -5,40 +5,30 @@ overrides them.
 
 ## Project Structure
 
-* Keep table definitions, functions, triggers, seed data, and feature queries
-  in clearly named locations.
-* Keep one focused query or DDL object per file unless the existing directory
-  already groups related setup statements together.
-* Preserve the current file organization. Add new query files near the code or
-  feature area that will use them.
-* Follow the migration policy of the current project. Do not assume direct DDL
-  edits are acceptable unless the project explicitly allows rebuilds.
+* Keep table definitions, functions, triggers, seed data, and feature queries in clearly named locations.
+* Keep one focused query or DDL object per file unless the existing directory already groups related setup statements together.
+* Preserve the current file organization.
+  Add new query files near the code or feature area that will use them.
+* Follow the migration policy of the current project.
+  Do not assume direct DDL edits are acceptable unless the project explicitly allows rebuilds.
 
 ## Safety
 
 * Do not invent tables, columns, enum values, functions, triggers, or workflows.
   Inspect existing schema files and calling code first.
-* If a change needs a new table, column, enum, trigger, function, API route, or
-  environment variable, propose the structure and ask before implementing.
-* Prefer the smallest SQL change that preserves readability and existing
-  behavior.
-* Keep SQL and application parameter names in sync. If a SQL parameter changes,
-  check the caller.
-* Do not add broad data cleanup, destructive statements, or ad hoc migrations
-  unless explicitly requested.
+* If a change needs a new table, column, enum, trigger, function, API route, or environment variable, propose the structure and ask before implementing.
+* Prefer the smallest SQL change that preserves readability and existing behavior.
+* Keep SQL and application parameter names in sync. If a SQL parameter changes, check the caller.
+* Do not add broad data cleanup, destructive statements, or ad hoc migrations unless explicitly requested.
 
 ## Formatting
 
 * Max line length: **92 characters** where practical.
 * Prefer vertical readability over horizontal density.
-* Use uppercase SQL keywords:
-  `SELECT`, `FROM`, `WHERE`, `INSERT`, `UPDATE`, `DELETE`, `RETURNING`,
-  `UPSERT`, `CASE`, `WHEN`, `ELSE`, `END`.
+* Use uppercase SQL keywords: `SELECT`, `FROM`, `WHERE`, `INSERT`, `UPDATE`, `DELETE`, `RETURNING`, `UPSERT`, `CASE`, `WHEN`, `ELSE`, `END`.
 * Put major clauses on their own lines.
-* Put one selected column, inserted column, value, condition group, or returned
-  column per line when there is more than one item.
-* Align aliases, assignment operators, and related values when it improves scan
-  speed.
+* Put one selected column, inserted column, value, condition group, or returned column per line when there is more than one item.
+* Align aliases, assignment operators, and related values when it improves scan speed.
 * End executable statements with semicolons.
 * Preserve blank lines and indentation that support vertical readability.
 * Follow the repository trailing-whitespace rule:
@@ -63,19 +53,25 @@ ORDER BY
   inv.sequence_num ASC;
 ```
 
+Align comparison operators and closing parentheses in `WHERE` predicates:
+```sql
+WHERE
+  ( num.registration_status = 'active'      ) AND
+  ( msg.contact             = @contact      ) AND
+  ( que.id                  > @after_row_id ) AND
+  ( que.msg_status          IS NOT NULL     )
+```
+
 ## Parameters
 
 * Query files used by application code should start with a `-- PARAMS:` block.
 * List every external parameter in that block.
 * Use the same parameter names as the caller.
 * Document the expected application/domain type, not only the SQL type.
-* Use the placeholder syntax already used by the project:
-  `@param_name`, `:param_name`, `?`, `$1`, or the local equivalent.
-* Cast or convert parameters explicitly where the target SQL type matters and
-  the current dialect supports it.
+* Use the placeholder syntax already used by the project: `@param_name`, `:param_name`, `?`, `$1`, or the local equivalent.
+* Cast or convert parameters explicitly where the target SQL type matters and the current dialect supports it.
 * Use project domain types when they exist.
-* For optional text-like inputs that may arrive as empty strings, normalize
-  with the dialect's `NULLIF` or equivalent before type conversion.
+* For optional text-like inputs that may arrive as empty strings, normalize with the dialect's `NULLIF` or equivalent before type conversion.
 
 Example:
 ```sql
@@ -90,8 +86,7 @@ Example:
 
 * Prefer explicit table aliases for multi-table queries.
 * Use short aliases that reflect the table name or existing convention.
-* Qualify selected columns and `WHERE` columns when more than one table is
-  involved.
+* Qualify selected columns and `WHERE` columns when more than one table is involved.
 * Prefer explicit `JOIN ... ON ...` over implicit joins.
 * Group boolean predicates with parentheses when combining `AND` and `OR`.
 * Keep optional filters readable:
@@ -99,8 +94,8 @@ Example:
   WHERE
     ( inv.business_id = @business_id ) AND
     (
-      ( NULLIF( @status, '') IS NULL ) OR
-      ( inv.status = NULLIF( @status, '') )
+      ( NULLIF( @status, '') IS NULL                ) OR
+      ( inv.status           = NULLIF( @status, '') )
     )
   ```
 * Prefer `RETURNING` for insert/update queries when the caller needs generated
@@ -111,23 +106,37 @@ Example:
 * Use `COALESCE( @param, table.column )` only when `NULL` means "keep existing
   value"; do not use it when `NULL` is a meaningful update.
 
-### Multiple Joins
+### Joins
 
-For multiple joins:
-* Try to keep the table aliases and `ON` clauses aligned.
-* For equality conditions in `ON` clauses:
+In general:
+* `INNER JOIN`: No need for `INNER`, just `JOIN`.
+* Keep the table aliases and `ON` clauses aligned.
+
+For schemas with dependency levels, i.e., those with an `abc_Database-specs.md`:
+* Join tables in order of ascending dependency level, i.e., from low to high.
+  At the same level, follow the order in which the tables were defined.
+* For `ON` clauses:
   * Put the column from the table with the **lower dependency level** on the **left** side of the equality.
-  * If both tables have the same dependency level, put the column from the table
-    declared first in the schema DDL on the left.
+  * Break ties using the order in which the tables were defined.
+  * I.e., `ON table_1.id = table_2.item_id` implies the dependency level of `table_1` is less than or equal to that of `table_2`.
 
-Example:
+**Example**
+
+Suppose:
+* `customers` is level 0.
+* `payment_totals` and `reward_totals` are level 1, and `payment_totals` is defined first.
+* `payment_dates` is level 2 because it references `payment_totals`.
+
+Then the preferred join order is:
 ```sql
 FROM
   customers      AS cus
+JOIN
+  payment_totals AS pay ON cus.id = pay.customer_id
 LEFT JOIN
   reward_totals  AS rew ON cus.id = rew.customer_id
 LEFT JOIN
-  payment_totals AS pay ON cus.id = pay.customer_id
+  payment_dates  AS pdt ON pay.id = pdt.payment_id
 ```
 
 ## DDL Style
