@@ -12,8 +12,15 @@
 		{ "path": "../tv_model_guided" },
 	],
 	"settings": {
-		// Virtual Environment
+		
+		// PYTHON VIRTUAL ENVIRONMENT
 		"python.defaultInterpreterPath": "${env:HOME}/pe/bin/python",
+		
+		// ALL OTHER SETTINGS IN ALPHABETICAL ORDERING
+		
+		// ChatGPT Codex
+		"chatgpt.commentCodeLensEnabled": false,
+		
 		// Cursor Pyright
 		"cursorpyright.analysis.autoImportCompletions": true,
 		"cursorpyright.analysis.diagnosticMode": "openFilesOnly",
@@ -26,6 +33,7 @@
 		],
 		"cursorpyright.analysis.typeCheckingMode": "off",
 		"cursorpyright.nodeMaxOldSpaceSize": 4096,
+		
 		// Editor
 		"editor.autoIndent": "keep",
 		"editor.formatOnPaste": false,
@@ -42,6 +50,7 @@
 			"**/.git": true,
 		},
 		"explorer.sortOrder": "default",
+		
 		// Files
 		"files.associations": {
 			"*.env": "properties",
@@ -49,7 +58,33 @@
 		},
 		"files.trimFinalNewlines": true,
 		"files.trimTrailingWhitespace": false,
+		
+		// JSON
+		"[json]": {
+			"editor.quickSuggestions": {
+				"strings": true
+			},
+			"editor.suggest.insertMode": "replace",
+			"editor.tabSize": 2,
+		},
 		"json.schemaDownload.enable": true,
+		
+		// Markdown
+		"[markdown]": {
+			"editor.tabSize": 2,
+			"editor.insertSpaces": true,
+			"editor.detectIndentation": false,
+		},
+		"markdown.preview.scrollEditorWithPreview": false,
+		"markdown.preview.scrollPreviewWithEditor": false,
+		
+		// SQL
+		"[sql]": {
+			"editor.tabSize": 2,
+			"editor.insertSpaces": true,
+			"editor.detectIndentation": false,
+		},
+		
 		// Workbench
 		"workbench.editor.enablePreview": false,
 		"workbench.editor.enablePreviewFromQuickOpen": false,
@@ -59,22 +94,6 @@
 			"*.svg": "default",
 		},
 		"workbench.sideBar.location": "right",
-		// ChatGPT Codex
-		"chatgpt.commentCodeLensEnabled": false,
-		// Markdown
-		"markdown.preview.scrollEditorWithPreview": false,
-		"markdown.preview.scrollPreviewWithEditor": false,
-		// Markdown file indentation
-		"[markdown]": {
-			"editor.tabSize": 2,
-			"editor.insertSpaces": true,
-			"editor.detectIndentation": false,
-		},
-		// SQL file indentation
-		"[sql]": {
-			"editor.tabSize": 2,
-			"editor.insertSpaces": true,
-			"editor.detectIndentation": false,
-		},
+	
 	},
 }
