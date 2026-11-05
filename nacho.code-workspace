@@ -54,7 +54,9 @@
 		// Files
 		"files.associations": {
 			"*.env": "properties",
-			"*.env.*": "properties",
+			".env.*.json": "json",
+			".env.*.jsonc": "jsonc",
+			".env.*.jsonl": "jsonl",
 		},
 		"files.trimFinalNewlines": true,
 		"files.trimTrailingWhitespace": false,
