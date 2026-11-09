@@ -8,6 +8,7 @@ UNTRACKED_FILES=(
   "sofia-server/.env"
   "sofia-server/.env.meta-app-settings.json"
   "sofia-server/postgres-language-server.jsonc"
+  "vibe-coding/meta/whatsapp_assets.env"
 )
 
 # Detect source OS and target OS
