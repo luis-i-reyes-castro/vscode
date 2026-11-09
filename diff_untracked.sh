@@ -6,6 +6,7 @@ UNTRACKED_FILES=(
   ".git-credentials"
   "wa-agents/postgres-language-server.jsonc"
   "sofia-server/.env"
+  "sofia-server/.env.meta-app-settings.json"
   "sofia-server/postgres-language-server.jsonc"
 )
 
