@@ -33,14 +33,20 @@ for repo in "${REPOS[@]}"; do
       exit 0
     fi
     read -r ahead behind <<< "$(git rev-list --left-right --count HEAD...FETCH_HEAD)"
+    stash_list="$(git -c color.ui=false stash list)"
     if (( ahead > 0 || behind > 0 )) ||
       [[ -n "$(git ls-files --others --exclude-standard)" ]] ||
-      git rev-parse --verify --quiet refs/stash >/dev/null; then
+      [[ -n "$stash_list" ]]; then
       printf '\033[93m'
       trap 'printf "\033[0m"' EXIT
     fi
     echo "REPOSITORY: ${repo}"
     git -c color.status=false status
+    if [[ -n "$stash_list" ]]; then
+      echo
+      echo "**WARNING:** Stash is not empty!"
+      echo "$stash_list"
+    fi
   )
   echo
 done

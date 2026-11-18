@@ -9,6 +9,7 @@
 		{ "path": "../sofia-server/backend/case_handlers/da_assistant" },
 		{ "path": "../sofia-server/backend/case_handlers/ieced" },
 		{ "path": "../sofia-server/backend/case_handlers/tia_chatbots" },
+		{ "path": "../pm-ekg" },
 		{ "path": "../tv_model_guided" },
 	],
 	"settings": {

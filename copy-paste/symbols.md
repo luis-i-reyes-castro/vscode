@@ -3,6 +3,7 @@
 | Symbol | Description |
 | ------ | ----------- |
 | ➡️       | Right Arrow              |
+| ⬅️       | Left Arrow               |
 | ✅ 🟢 🟩 | Good                     |
 | ❌ 🔴 🟥 | Bad                      |
 | ⚠️ 🟠 🟧 | Warning                  |
