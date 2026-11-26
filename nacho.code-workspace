@@ -31,6 +31,7 @@
 		"cursorpyright.analysis.extraPaths": [
 			"${env:HOME}/sofia-utils",
 			"${env:HOME}/wa-agents",
+			"${env:HOME}/sofia-server/backend",
 		],
 		"cursorpyright.analysis.typeCheckingMode": "off",
 		"cursorpyright.nodeMaxOldSpaceSize": 4096,
